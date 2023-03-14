@@ -4,55 +4,59 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     Rigidbody2D rb2d;
-    BoxCollider2D bc2d;
+    [SerializeField] float speed = 60f;
     Vector2 direction = new Vector2(0, 0);
-    float tileSize = 2f;
+    [SerializeField] LayerMask wallLayer;
     bool isPlayerMoving = false;
+    bool isExecuting = false;
 
     private void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
-        bc2d = GetComponent<BoxCollider2D>();
     }
+
 
 
     private void Update() {
-        UpdatePlayerDirection();
-        if (!isPlayerMoving)
-            direction = new Vector2(0, 0);
+        UpdatePlayerDirectionMovement();
     }
 
-    void UpdatePlayerDirection() {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !isPlayerMoving) {
-            isPlayerMoving = true;
+    void UpdatePlayerDirectionMovement() {
+        if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
             direction = Vector2.up;
-            StartCoroutine(GoInDirection());
-        } else if (Input.GetKeyDown(KeyCode.DownArrow) && !isPlayerMoving) {
             isPlayerMoving = true;
+            MovePlayer();
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.DownArrow)) {
             direction = Vector2.down;
-            StartCoroutine(GoInDirection());
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isPlayerMoving) {
             isPlayerMoving = true;
+            MovePlayer();
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {
             direction = Vector2.left;
-            StartCoroutine(GoInDirection());
-        } else if (Input.GetKeyDown(KeyCode.RightArrow) && !isPlayerMoving) {
             isPlayerMoving = true;
+            MovePlayer();
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.RightArrow)) {
             direction = Vector2.right;
-            StartCoroutine(GoInDirection());
+            isPlayerMoving = true;
+            MovePlayer();
         }
     }
 
+    void MovePlayer() {
+        float moveDuration = 0f;
+        Vector3 startPosition = transform.localPosition;
+        Vector3 finalPosition = transform.localPosition;
+        RaycastHit2D hit2d = Physics2D.Raycast(transform.position, direction, 40, wallLayer);
+        if (hit2d.collider != null) {
+            Vector2 colliderLocalPosition = hit2d.transform.localPosition;
+            finalPosition.x = Mathf.RoundToInt(colliderLocalPosition.x - direction.x);
+            finalPosition.y = Mathf.RoundToInt(colliderLocalPosition.y - direction.y);
+        }
 
-    IEnumerator GoInDirection() {
-        yield return new WaitForSeconds(1f);
-        direction = new Vector2(0, 0);
+        while (moveDuration < Constants.MOVE_DURATION) {
+            moveDuration += Time.deltaTime;
+            transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);
+        }
         isPlayerMoving = false;
-    }
-
-    private void FixedUpdate() {
-        Vector3 position = transform.position;
-        position.x = Mathf.Round(position.x + direction.x);
-        position.y = Mathf.Round(position.y + direction.y);
-        transform.position = position;
     }
 }
