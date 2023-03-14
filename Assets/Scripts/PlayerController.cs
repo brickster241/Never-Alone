@@ -6,12 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     
     Rigidbody2D rb2d;
-    [SerializeField] float speed = 60f;
     Vector2 direction = new Vector2(0, 0);
     [SerializeField] LayerMask wallLayer;
     bool isPlayerMoving = false;
-    bool isExecuting = false;
-
+    
     private void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -57,6 +55,7 @@ public class PlayerController : MonoBehaviour
             moveDuration += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);
         }
+        transform.localPosition = finalPosition;
         isPlayerMoving = false;
     }
 }
