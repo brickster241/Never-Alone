@@ -8,6 +8,7 @@ public class GameplayManager : MonoBehaviour
     
     public static GameplayManager Instance { get; private set;}
     [SerializeField] AudioInfo[] sounds;
+    public int TotalScenes = 3;
     
     private void Awake() {
         if (Instance == null) {

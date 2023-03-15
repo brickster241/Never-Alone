@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-
-
     private void Update() {
         if (!uIController.isUIVisible) {
             UpdatePlayerDirectionMovement();
@@ -27,10 +25,6 @@ public class PlayerController : MonoBehaviour
     void UpdatePlayerDirectionMovement() {
         if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
             direction = Vector2.up;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.DownArrow)) {
-            direction = Vector2.down;
             isPlayerMoving = true;
             MovePlayer();
         } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {

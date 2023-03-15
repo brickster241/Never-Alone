@@ -9,11 +9,10 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject greenLevelComplete;
     [SerializeField] GameObject blueLevelComplete;
-    [SerializeField] Rigidbody2D greenPlayerRB;
-    [SerializeField] Rigidbody2D bluePlayerRB;
+    public Rigidbody2D greenPlayerRB;
+    public Rigidbody2D bluePlayerRB;
     Transform greenPlayer;
     Transform bluePlayer;
-    int maxLevels = 1;
 
     private void Awake() {
         greenPlayer = greenPlayerRB.gameObject.GetComponent<Transform>();
@@ -37,7 +36,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void LoadNextLevel() {
-        int nextSceneBuildIndex = (SceneManager.GetActiveScene().buildIndex + 1) % maxLevels;
+        int nextSceneBuildIndex = (SceneManager.GetActiveScene().buildIndex + 1) % GameplayManager.Instance.TotalScenes;
         SceneManager.LoadScene(nextSceneBuildIndex);
     }
 }
