@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             finalPosition.x = Mathf.RoundToInt(colliderLocalPosition.x - direction.x);
             finalPosition.y = Mathf.RoundToInt(colliderLocalPosition.y - direction.y);
         }
-
+        GameplayManager.Instance.PlayAudio(AudioType.PLAYER_DASH);
         while (moveDuration < Constants.MOVE_DURATION) {
             moveDuration += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);

@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 
 public enum AudioType {
-    MAIN_MENU,
-    LEVEL,
+    GAME_BACKGROUND,
     PLAYER_DASH,
     LEVEL_COMPLETE,
-    LEVEL_OVER
+    LEVEL_OVER,
+    BUTTON_CLICK
 }
 
 

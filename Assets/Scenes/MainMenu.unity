@@ -9134,7 +9134,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16aaf03af5a13c42b28b768d97fde41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - audioType: 4
+    audioClip: {fileID: 8300000, guid: 2199d2785e83e854096589599db2c312, type: 3}
+    volume: 0.1
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioType: 2
+    audioClip: {fileID: 8300000, guid: df93f96cc7f0bb24b919b8c0205fd2a3, type: 3}
+    volume: 0.2
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioType: 3
+    audioClip: {fileID: 8300000, guid: 9625618ec1b1cf74fb832fd67f5c1fc6, type: 3}
+    volume: 0.2
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioType: 1
+    audioClip: {fileID: 8300000, guid: c92844e753f6d684eae11d5751e0ca89, type: 3}
+    volume: 0.3
+    loop: 0
+    audioSource: {fileID: 0}
+  - audioType: 0
+    audioClip: {fileID: 8300000, guid: 56e355d9ab61fc1469498ab76a9ff1da, type: 3}
+    volume: 0.05
+    loop: 1
+    audioSource: {fileID: 0}
 --- !u!1 &1018960445
 GameObject:
   m_ObjectHideFlags: 0
@@ -13667,7 +13692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6238519, g: 0.91331893, b: 0.9811321, a: 1}
+  m_Color: {r: 1, g: 0.78679246, b: 0.9569014, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14071,7 +14096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9711895, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.78679246, b: 0.9569014, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14205,7 +14230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6238519, g: 0.91331893, b: 0.9811321, a: 1}
+  m_Color: {r: 1, g: 0.78679246, b: 0.9569014, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

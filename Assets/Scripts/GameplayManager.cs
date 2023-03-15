@@ -25,6 +25,10 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    private void Start() {
+        Instance.PlayAudio(AudioType.GAME_BACKGROUND);
+    }
+
     public void PlayAudio(AudioType audioType) {
         AudioInfo soundInfo = Array.Find(sounds, item => item.audioType == audioType);
         soundInfo.audioSource.Play();

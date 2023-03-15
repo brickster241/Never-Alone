@@ -22,12 +22,14 @@ public class UIController : MonoBehaviour
         if (isUIVisible)
             return;
         isUIVisible = true;
+        GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         PauseButtonTop.color = Color.yellow;
         PauseButtonText.text = "PAUSED";
         PauseUI.SetActive(true);
     }
 
     public void OnResumeButtonClick() {
+        GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         isUIVisible = false;
         PauseUI.SetActive(false);
         PauseButtonTop.color = Color.green;
@@ -36,19 +38,23 @@ public class UIController : MonoBehaviour
     }
 
     public void DisplayLevelComplete() {
+        GameplayManager.Instance.PlayAudio(AudioType.LEVEL_COMPLETE);
         isUIVisible = true;
         LevelCompleteUI.SetActive(true);
     }
 
     public void OnRestartButtonClick() {
+        GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.RestartLevel();
     }
 
     public void OnMainMenuButtonClick() {
+        GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.GoToMainMenu();
     }
 
     public void OnNextButtonClick() {
+        GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.LoadNextLevel();
     }
 }
