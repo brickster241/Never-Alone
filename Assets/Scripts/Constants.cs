@@ -2,6 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+
+
+public enum AudioType {
+    MAIN_MENU,
+    LEVEL,
+    PLAYER_DASH,
+    LEVEL_COMPLETE,
+    LEVEL_OVER
+}
+
+
 public class Constants {
     public const float MOVE_DURATION = 3f;
     public const float MAX_MOVE = 10f;
