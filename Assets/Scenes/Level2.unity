@@ -268,7 +268,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 503899984}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &28266633
 TrailRenderer:
@@ -482,7 +482,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2760,8 +2760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenLevelComplete: {fileID: 1647905614}
   blueLevelComplete: {fileID: 562153371}
-  greenPlayerRB: {fileID: 1381878467}
-  bluePlayerRB: {fileID: 28266634}
+  GreenPlayer: {fileID: 1381878462}
+  BluePlayer: {fileID: 28266631}
 --- !u!1 &238784226
 GameObject:
   m_ObjectHideFlags: 0
@@ -7064,8 +7064,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1226366826}
-  - {fileID: 562153372}
   - {fileID: 28266632}
+  - {fileID: 562153372}
   m_Father: {fileID: 1041517048}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7961,7 +7961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 503899984}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &562153373
 SpriteRenderer:
@@ -19394,7 +19394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 1, b: 0.22552013, a: 1}
   m_FlipX: 0

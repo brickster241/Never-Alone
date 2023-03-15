@@ -57,4 +57,11 @@ public class UIController : MonoBehaviour
         GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.LoadNextLevel();
     }
+
+    private void Update() {
+        bool isLevelCompleted = levelManager.isLevelComplete();
+        if (isLevelCompleted && !isUIVisible) {
+            DisplayLevelComplete();
+        }
+    }
 }

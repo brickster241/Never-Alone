@@ -9,19 +9,12 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject greenLevelComplete;
     [SerializeField] GameObject blueLevelComplete;
-    public Rigidbody2D greenPlayerRB;
-    public Rigidbody2D bluePlayerRB;
-    Transform greenPlayer;
-    Transform bluePlayer;
-
-    private void Awake() {
-        greenPlayer = greenPlayerRB.gameObject.GetComponent<Transform>();
-        bluePlayer = bluePlayerRB.gameObject.GetComponent<Transform>();
-    }
+    [SerializeField] GameObject GreenPlayer;
+    [SerializeField] GameObject BluePlayer;
 
     public bool isLevelComplete() {
-        float greenDistance = Vector3.Distance(greenPlayer.position, greenLevelComplete.transform.position);
-        float blueDistance = Vector3.Distance(bluePlayer.position, blueLevelComplete.transform.position);
+        float greenDistance = Vector3.Distance(GreenPlayer.transform.localPosition, greenLevelComplete.transform.localPosition);
+        float blueDistance = Vector3.Distance(BluePlayer.transform.localPosition, blueLevelComplete.transform.localPosition);
         
         return greenDistance < Constants.MIN_DISTANCE && blueDistance < Constants.MIN_DISTANCE;
     }

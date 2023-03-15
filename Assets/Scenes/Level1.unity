@@ -593,7 +593,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2871,8 +2871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenLevelComplete: {fileID: 1647905614}
   blueLevelComplete: {fileID: 562153371}
-  greenPlayerRB: {fileID: 1381878467}
-  bluePlayerRB: {fileID: 28266634}
+  GreenPlayer: {fileID: 1381878462}
+  BluePlayer: {fileID: 28266631}
 --- !u!1 &238784226
 GameObject:
   m_ObjectHideFlags: 0
@@ -17910,7 +17910,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 1, b: 0.22552013, a: 1}
   m_FlipX: 0

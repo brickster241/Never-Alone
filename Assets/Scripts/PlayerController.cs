@@ -53,10 +53,7 @@ public class PlayerController : MonoBehaviour
             moveDuration += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);
         }
-        transform.localPosition = finalPosition;
-        if (levelManager.isLevelComplete()) {
-            uIController.DisplayLevelComplete();
-        }
+        transform.localPosition = new Vector3(Mathf.RoundToInt(finalPosition.x), Mathf.RoundToInt(finalPosition.y), 0f);
         isPlayerMoving = false;
     }
 }
