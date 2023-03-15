@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 direction = new Vector2(0, 0);
     [SerializeField] LayerMask wallLayer;
+    [SerializeField] LevelManager levelManager;
+    [SerializeField] UIController uIController;
     bool isPlayerMoving = false;
     
     private void Awake() {
@@ -17,7 +19,9 @@ public class PlayerController : MonoBehaviour
 
 
     private void Update() {
-        UpdatePlayerDirectionMovement();
+        if (!uIController.isUIVisible) {
+            UpdatePlayerDirectionMovement();
+        } 
     }
 
     void UpdatePlayerDirectionMovement() {
@@ -56,6 +60,9 @@ public class PlayerController : MonoBehaviour
             transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);
         }
         transform.localPosition = finalPosition;
+        if (levelManager.isLevelComplete()) {
+            uIController.DisplayLevelComplete();
+        }
         isPlayerMoving = false;
     }
 }

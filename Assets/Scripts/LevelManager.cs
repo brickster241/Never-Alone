@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,28 +13,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Rigidbody2D bluePlayerRB;
     Transform greenPlayer;
     Transform bluePlayer;
-    public bool isLevelCompleted = false;
     int maxLevels = 1;
 
     private void Awake() {
         greenPlayer = greenPlayerRB.gameObject.GetComponent<Transform>();
         bluePlayer = bluePlayerRB.gameObject.GetComponent<Transform>();
-    }
-
-    void Start() {
-        isLevelCompleted = false;
-        StartCoroutine(EnableAndDisableGravity());
-    }
-
-    IEnumerator EnableAndDisableGravity() {
-        while (!isLevelCompleted) {
-            greenPlayerRB.gravityScale = 3;
-            bluePlayerRB.gravityScale = 3;
-            yield return new WaitForSeconds(Constants.DISABLE_ENABLE_GRAVITY_INTERVAL);
-            greenPlayerRB.gravityScale = 0;
-            bluePlayerRB.gravityScale = 0;
-            yield return new WaitForSeconds(Constants.DISABLE_ENABLE_GRAVITY_INTERVAL);
-        }
     }
 
     public bool isLevelComplete() {
