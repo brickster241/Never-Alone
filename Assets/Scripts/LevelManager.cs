@@ -11,33 +11,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject blueLevelComplete;
     [SerializeField] Rigidbody2D greenPlayerRB;
     [SerializeField] Rigidbody2D bluePlayerRB;
-    [SerializeField] Image gravityText;
     Transform greenPlayer;
     Transform bluePlayer;
-    public bool isLevelCompleted = false;
     int maxLevels = 1;
 
     private void Awake() {
         greenPlayer = greenPlayerRB.gameObject.GetComponent<Transform>();
         bluePlayer = bluePlayerRB.gameObject.GetComponent<Transform>();
-    }
-
-    void Start() {
-        isLevelCompleted = false;
-        StartCoroutine(EnableAndDisableGravity());
-    }
-
-    IEnumerator EnableAndDisableGravity() {
-        while (!isLevelCompleted) {
-            greenPlayerRB.gravityScale = 3f;
-            bluePlayerRB.gravityScale = 3f;
-            gravityText.color = Color.green;
-            yield return new WaitForSeconds(Constants.DISABLE_ENABLE_GRAVITY_INTERVAL);
-            gravityText.color = Color.grey;
-            greenPlayerRB.gravityScale = 0f;
-            bluePlayerRB.gravityScale = 0f;
-            yield return new WaitForSeconds(Constants.DISABLE_ENABLE_GRAVITY_INTERVAL);
-        }
     }
 
     public bool isLevelComplete() {

@@ -10,38 +10,45 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject LevelCompleteUI;
     [SerializeField] LevelManager levelManager;
     [SerializeField] TextMeshProUGUI PauseButtonText;
+    public bool isUIVisible;
     Image PauseButtonTop;
 
     private void Start() {
+        isUIVisible = false;
         PauseButtonTop = PauseButtonText.GetComponentInParent<Image>();
     }
     
     public void OnPauseButtonClick() {
+        if (isUIVisible)
+            return;
+        isUIVisible = true;
         PauseButtonTop.color = Color.yellow;
         PauseButtonText.text = "PAUSED";
         PauseUI.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void OnResumeButtonClick() {
+        isUIVisible = false;
         PauseUI.SetActive(false);
-        Time.timeScale = 1f;
         PauseButtonTop.color = Color.green;
         PauseButtonText.text = "PAUSE";
+    
+    }
+
+    public void DisplayLevelComplete() {
+        isUIVisible = true;
+        LevelCompleteUI.SetActive(true);
     }
 
     public void OnRestartButtonClick() {
-        Time.timeScale = 1f;
         levelManager.RestartLevel();
     }
 
     public void OnMainMenuButtonClick() {
-        Time.timeScale = 1f;
         levelManager.GoToMainMenu();
     }
 
     public void OnNextButtonClick() {
-        Time.timeScale = 1f;
         levelManager.LoadNextLevel();
     }
 }
