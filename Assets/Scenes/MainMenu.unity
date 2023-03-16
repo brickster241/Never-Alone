@@ -9848,17 +9848,17 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - audioType: 2
     audioClip: {fileID: 8300000, guid: df93f96cc7f0bb24b919b8c0205fd2a3, type: 3}
-    volume: 0.2
+    volume: 0.3
     loop: 0
     audioSource: {fileID: 0}
   - audioType: 3
     audioClip: {fileID: 8300000, guid: 9625618ec1b1cf74fb832fd67f5c1fc6, type: 3}
-    volume: 0.2
+    volume: 0.1
     loop: 0
     audioSource: {fileID: 0}
   - audioType: 1
     audioClip: {fileID: 8300000, guid: c92844e753f6d684eae11d5751e0ca89, type: 3}
-    volume: 0.3
+    volume: 0.5
     loop: 0
     audioSource: {fileID: 0}
   - audioType: 0
@@ -9866,7 +9866,6 @@ MonoBehaviour:
     volume: 0.05
     loop: 1
     audioSource: {fileID: 0}
-  levelSelectButtons: []
   TotalScenes: 3
 --- !u!1 &1018960445
 GameObject:

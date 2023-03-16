@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
             finalPosition.x = Mathf.RoundToInt(colliderLocalPosition.x - direction.x);
             finalPosition.y = Mathf.RoundToInt(colliderLocalPosition.y - direction.y);
         }
+        direction = Vector2.zero;
         GameplayManager.Instance.PlayAudio(AudioType.PLAYER_DASH);
         while (moveDuration < Constants.MOVE_DURATION) {
             moveDuration += Time.deltaTime;
@@ -61,5 +62,12 @@ public class PlayerController : MonoBehaviour
         }
         transform.localPosition = new Vector3(Mathf.RoundToInt(finalPosition.x), Mathf.RoundToInt(finalPosition.y), 0f);
         isPlayerMoving = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag(Constants.FIRE)) {
+            // Game Over
+            uIController.DisplayLevelFailed();
+        }
     }
 }

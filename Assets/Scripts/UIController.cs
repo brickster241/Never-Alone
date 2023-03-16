@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject PauseUI;
     [SerializeField] GameObject LevelCompleteUI;
+    [SerializeField] GameObject LevelFailedUI;
     [SerializeField] LevelManager levelManager;
     [SerializeField] TextMeshProUGUI PauseButtonText;
     public bool isUIVisible;
@@ -42,6 +43,12 @@ public class UIController : MonoBehaviour
         GameplayManager.Instance.PlayAudio(AudioType.LEVEL_COMPLETE);
         isUIVisible = true;
         LevelCompleteUI.SetActive(true);
+    }
+
+    public void DisplayLevelFailed() {
+        GameplayManager.Instance.PlayAudio(AudioType.LEVEL_OVER);
+        isUIVisible = true;
+        LevelFailedUI.SetActive(true);
     }
 
     public void OnRestartButtonClick() {
