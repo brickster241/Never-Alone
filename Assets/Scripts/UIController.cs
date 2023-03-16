@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject LevelFailedUI;
     [SerializeField] LevelManager levelManager;
     [SerializeField] TextMeshProUGUI PauseButtonText;
+    [SerializeField] Rigidbody2D greenPlayerRB;
+    [SerializeField] Rigidbody2D bluePlayerRB;
     public bool isUIVisible;
     Image PauseButtonTop;
 
@@ -67,11 +69,25 @@ public class UIController : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (isUIVisible) {
+            greenPlayerRB.bodyType = RigidbodyType2D.Static;
+            bluePlayerRB.bodyType = RigidbodyType2D.Static;
+        } else {
+            greenPlayerRB.bodyType = RigidbodyType2D.Dynamic;
+            bluePlayerRB.bodyType = RigidbodyType2D.Dynamic;
+        }
+
         bool isLevelCompleted = levelManager.isLevelComplete();
         if (isLevelCompleted && !isUIVisible) {
             int currentMaxLevel = Mathf.Max(PlayerPrefs.GetInt(Constants.UNLOCKED_LEVEL), (SceneManager.GetActiveScene().buildIndex + 1) % GameplayManager.Instance.TotalScenes);
             PlayerPrefs.SetInt(Constants.UNLOCKED_LEVEL, currentMaxLevel);
             DisplayLevelComplete();
+        }
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space) && !isUIVisible) {
+            OnPauseButtonClick();
         }
     }
 }

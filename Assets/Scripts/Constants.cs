@@ -24,4 +24,6 @@ public class Constants {
     public const float TIME_ENABLED_SCALE = 1f;
     public const string UNLOCKED_LEVEL = "UnlockedLevel";
     public const string FIRE = "Fire";
+    public const int GRAVITY_SCALE = 2;
+    public const int DISABLED_GRAVITY_SCALE = 0;
 }
