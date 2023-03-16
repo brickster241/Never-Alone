@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject PauseUI;
     [SerializeField] GameObject LevelCompleteUI;
+    [SerializeField] GameObject LevelFailedUI;
     [SerializeField] LevelManager levelManager;
     [SerializeField] TextMeshProUGUI PauseButtonText;
     public bool isUIVisible;
@@ -43,6 +45,12 @@ public class UIController : MonoBehaviour
         LevelCompleteUI.SetActive(true);
     }
 
+    public void DisplayLevelFailed() {
+        GameplayManager.Instance.PlayAudio(AudioType.LEVEL_OVER);
+        isUIVisible = true;
+        LevelFailedUI.SetActive(true);
+    }
+
     public void OnRestartButtonClick() {
         GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.RestartLevel();
@@ -56,5 +64,14 @@ public class UIController : MonoBehaviour
     public void OnNextButtonClick() {
         GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         levelManager.LoadNextLevel();
+    }
+
+    private void FixedUpdate() {
+        bool isLevelCompleted = levelManager.isLevelComplete();
+        if (isLevelCompleted && !isUIVisible) {
+            int currentMaxLevel = Mathf.Max(PlayerPrefs.GetInt(Constants.UNLOCKED_LEVEL), (SceneManager.GetActiveScene().buildIndex + 1) % GameplayManager.Instance.TotalScenes);
+            PlayerPrefs.SetInt(Constants.UNLOCKED_LEVEL, currentMaxLevel);
+            DisplayLevelComplete();
+        }
     }
 }

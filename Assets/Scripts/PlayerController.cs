@@ -11,40 +11,40 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LevelManager levelManager;
     [SerializeField] UIController uIController;
     bool isPlayerMoving = false;
+    bool shouldMovePlayer = false;
     
     private void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-
-
     private void Update() {
         if (!uIController.isUIVisible) {
-            UpdatePlayerDirectionMovement();
+            UpdatePlayerDirection();
         } 
     }
 
-    void UpdatePlayerDirectionMovement() {
-        if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
-            direction = Vector2.up;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.DownArrow)) {
-            direction = Vector2.down;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {
-            direction = Vector2.left;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.RightArrow)) {
-            direction = Vector2.right;
-            isPlayerMoving = true;
+    private void FixedUpdate() {
+        if (shouldMovePlayer) {
+            shouldMovePlayer = false;
             MovePlayer();
         }
     }
 
+    void UpdatePlayerDirection() {
+        if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
+            direction = Vector2.up;
+            shouldMovePlayer = true;
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {
+            direction = Vector2.left;
+            shouldMovePlayer = true;
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.RightArrow)) {
+            direction = Vector2.right;
+            shouldMovePlayer = true;
+        }
+    }
+
     void MovePlayer() {
+        isPlayerMoving = true;
         float moveDuration = 0f;
         Vector3 startPosition = transform.localPosition;
         Vector3 finalPosition = transform.localPosition;
@@ -54,15 +54,20 @@ public class PlayerController : MonoBehaviour
             finalPosition.x = Mathf.RoundToInt(colliderLocalPosition.x - direction.x);
             finalPosition.y = Mathf.RoundToInt(colliderLocalPosition.y - direction.y);
         }
+        direction = Vector2.zero;
         GameplayManager.Instance.PlayAudio(AudioType.PLAYER_DASH);
         while (moveDuration < Constants.MOVE_DURATION) {
             moveDuration += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(startPosition, finalPosition, moveDuration / Constants.MOVE_DURATION);
         }
-        transform.localPosition = finalPosition;
-        if (levelManager.isLevelComplete()) {
-            uIController.DisplayLevelComplete();
-        }
+        transform.localPosition = new Vector3(Mathf.RoundToInt(finalPosition.x), Mathf.RoundToInt(finalPosition.y), 0f);
         isPlayerMoving = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag(Constants.FIRE)) {
+            // Game Over
+            uIController.DisplayLevelFailed();
+        }
     }
 }

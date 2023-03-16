@@ -22,4 +22,6 @@ public class Constants {
     public const float COLOR_ANIMATE_INTERVAL = 2f;
     public const float TIME_DISABLED_SCALE = 0.000001f;
     public const float TIME_ENABLED_SCALE = 1f;
+    public const string UNLOCKED_LEVEL = "UnlockedLevel";
+    public const string FIRE = "Fire";
 }
