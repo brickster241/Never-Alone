@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LevelManager levelManager;
     [SerializeField] UIController uIController;
     bool isPlayerMoving = false;
+    bool shouldMovePlayer = false;
     
     private void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
@@ -18,27 +19,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update() {
         if (!uIController.isUIVisible) {
-            UpdatePlayerDirectionMovement();
+            UpdatePlayerDirection();
         } 
     }
 
-    void UpdatePlayerDirectionMovement() {
-        if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
-            direction = Vector2.up;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {
-            direction = Vector2.left;
-            isPlayerMoving = true;
-            MovePlayer();
-        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.RightArrow)) {
-            direction = Vector2.right;
-            isPlayerMoving = true;
+    private void FixedUpdate() {
+        if (shouldMovePlayer) {
+            shouldMovePlayer = false;
             MovePlayer();
         }
     }
 
+    void UpdatePlayerDirection() {
+        if (!isPlayerMoving && Input.GetKeyDown(KeyCode.UpArrow)) {
+            direction = Vector2.up;
+            shouldMovePlayer = true;
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.LeftArrow)) {
+            direction = Vector2.left;
+            shouldMovePlayer = true;
+        } else if (!isPlayerMoving && Input.GetKeyDown(KeyCode.RightArrow)) {
+            direction = Vector2.right;
+            shouldMovePlayer = true;
+        }
+    }
+
     void MovePlayer() {
+        isPlayerMoving = true;
         float moveDuration = 0f;
         Vector3 startPosition = transform.localPosition;
         Vector3 finalPosition = transform.localPosition;

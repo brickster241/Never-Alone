@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -58,9 +59,11 @@ public class UIController : MonoBehaviour
         levelManager.LoadNextLevel();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         bool isLevelCompleted = levelManager.isLevelComplete();
         if (isLevelCompleted && !isUIVisible) {
+            int currentMaxLevel = Mathf.Max(PlayerPrefs.GetInt(Constants.UNLOCKED_LEVEL), (SceneManager.GetActiveScene().buildIndex + 1) % GameplayManager.Instance.TotalScenes);
+            PlayerPrefs.SetInt(Constants.UNLOCKED_LEVEL, currentMaxLevel);
             DisplayLevelComplete();
         }
     }

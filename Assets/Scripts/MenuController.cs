@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject StartingScreenUI;
     [SerializeField] GameObject HowToPlayUI;
     [SerializeField] GameObject LevelSelectUI;
+    [SerializeField] GameObject[] levelSelectButtons;
+
+    private void Start() {
+        UpdateLevelButtons();    
+    }
 
     public void DisplayHowToPlayUI() {
         GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
@@ -36,5 +43,13 @@ public class MenuController : MonoBehaviour
     public void LoadLevel(int level) {
         GameplayManager.Instance.PlayAudio(AudioType.BUTTON_CLICK);
         SceneManager.LoadScene(level);
+    }
+
+    public void UpdateLevelButtons() {
+        int unlockedLevels = PlayerPrefs.GetInt(Constants.UNLOCKED_LEVEL, 1);
+        for (int index = 0; index < unlockedLevels; index++) {
+            levelSelectButtons[index].GetComponent<Image>().color = Color.green;
+            levelSelectButtons[index].GetComponent<Button>().enabled = true;
+        }
     }
 }

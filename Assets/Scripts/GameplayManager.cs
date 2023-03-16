@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
     
     public static GameplayManager Instance { get; private set;}
     [SerializeField] AudioInfo[] sounds;
-    public int TotalScenes = 3;
+    public int TotalScenes; 
     
     private void Awake() {
+        TotalScenes = SceneManager.sceneCountInBuildSettings;
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
